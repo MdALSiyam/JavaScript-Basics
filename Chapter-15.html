@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+  </head>
+  <body>
+    <svg width="600" height="600">
+      <!-- Square element inside SVG with onclick handler -->
+      <rect id="square" width="400" height="400" fill="#2222" x="10" y="10" />
+      <script type="text/javascript">
+        document.getElementById('square').onclick = function() {
+          const color = this.getAttribute('fill');
+          if (color === '#2222') {
+            this.setAttribute('fill', '#4444');
+          } else if (color === '#4444') {
+            this.setAttribute('fill', '#5555');
+          } else {
+            this.setAttribute('fill', '#2222');
+          }
+        };
+      </script>
+    </svg>
+
+    <!-- D3.js bar chart -->
+    <script type="text/javascript">
+      const data = [56, 99, 14, 12, 46, 33, 22, 100, 87, 6, 55, 44, 27, 28, 34];
+      const height = 400;
+      const barWidth = 25;
+      
+      const x = d3
+        .scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([0, height]);
+        
+      const svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", data.length * (barWidth + 1))
+        .attr("height", height);
+
+      svg
+        .selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("fill", "#101055")
+        .attr("x", (d, i) => i * (barWidth + 1))
+        .attr("y", (d) => height - x(d))
+        .attr("width", barWidth)
+        .attr("height", (d) => x(d)); // corrected bar height calculation
+    </script>
+
+    <!-- Canvas inside foreignObject -->
+    <svg id="svgelem" height="400" width="600">
+      <foreignObject width="300" height="150">
+        <canvas width="300" height="150" id="thisCanvas">
+          Alternate content for browsers that do not support Canvas
+        </canvas>
+      </foreignObject>
+      <circle
+        id="redcircle"
+        cx="300"
+        cy="100"
+        r="100"
+        fill="blue"
+        stroke="#2222"
+      />
+      <script type="text/javascript">
+        window.onload = function() {
+          var context2 = document.getElementById("thisCanvas").getContext('2d');
+          context2.fillStyle = "#4565";
+          context2.fillRect(0, 0, 200, 200);
+        };
+      </script>
+    </svg>
+  </body>
+</html>

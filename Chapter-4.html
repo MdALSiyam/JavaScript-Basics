@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log('======> Getting the Current Date and Time <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const today = new Date();
+    console.log(today.getFullYear());
+    console.log(today.getMonth());
+    console.log(today.getDay());
+    console.log(today.getHours());
+    console.log(today.getMinutes());
+    console.log(today.getSeconds());
+    const hours = today.getHours();
+    const minutes = today.getMinutes().toString().padStart(2, '0');
+    console.log('Time ' + hours + ':' + minutes);
+    const anotherDay = new Date(2024, 1, 1, 10, 30);
+    console.log(anotherDay);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('======> Converting a String to a Date <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const stringDate = '12/30/2024';
+    const dateArray = stringDate.split('/');
+    console.log(dateArray);
+    const year = dateArray[2];
+    const month = dateArray[0];
+    const day = dateArray[1];
+    const eventDate = new Date(year, month-1, day);
+    console.log(eventDate);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('======> Adding Days to a Date <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const toDay = new Date();
+    const currentDay = today.getDate();
+    today.setDate(currentDay + 14);
+    console.log(`Two weeks from today is ${today}`);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('======> Comparing Dates and Testing Dates for Equality <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const oldDay = new Date(2020, 10, 20);
+    const newerDay = new Date(2024, 1, 1);
+    if (newerDay > oldDay) {
+      console.log('This is True');
+    } else {
+      console.log('This is False');
+    }
+    const date1 = new Date(2020, 1, 1);
+    const date2 = new Date(2020, 1, 1);
+    console.log(date1 === date2);
+    console.log(date1.getTime() === date2.getTime());
+    console.log('');
+  </script>
+</body>
+</html>

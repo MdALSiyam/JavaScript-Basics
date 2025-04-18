@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("=====> Checking if an Object Is a Certain Type <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const myObj = new Date();
+      if (myObj instanceof Object) {
+        console.log("It is an Object");
+      }
+      if (typeof myObj === "object") {
+        console.log("It is an Object");
+      }
+      const num = 42;
+      if (!(num instanceof Number)) {
+        console.log("It is not an Object");
+      }
+      const testStr = "IsDB";
+      if (!(testStr instanceof String)) {
+        console.log("It is not an Object");
+      }
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Using an Object Literal to Bundle Data <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const employee = {
+        employeeId: 100,
+        firstName: "Abdul",
+        lastName: "Latif",
+        birthplace: { country: "Bangladesh", city: "Dhaka" },
+      };
+      console.log(employee);
+      console.log(employee.birthplace.country);
+      console.log(employee.birthplace.city);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Checking If an Object Has a Property <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const student = {
+        studentId: 100,
+        firstName: "Abdul",
+        lastName: "Latif",
+        birthplace: { country: "Bangladesh", city: "Dhaka" },
+      };
+      console.log(student.hasOwnProperty("birthplace"));
+      console.log(employee.hasOwnProperty("dateOfBirth"));
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Merging the Properties of Two Objects <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const student1 = {
+        studentId: 100,
+        firstName: "Abdul",
+        lastName: "Latif",
+        birthplace: { country: "Bangladesh", city: "Dhaka" },
+      };
+      const address = {
+        country: "Bangladesh",
+        city: "Dhaka",
+        streetNumber: "1223",
+      };
+      const studentWithAddress = { ...student1, ...address };
+      console.log(studentWithAddress);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Cloning an Object <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const animal = {
+        name: "Red Fox",
+        class: "Mammalia",
+        order: "Carnivore",
+        family: "Candae",
+        genus: "Vulpes",
+        species: "Vulpes vulpes",
+      };
+      console.log(animal.species);
+      const animalCopy = { ...animal };
+      console.log(animalCopy.species);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("======= Making a Deep Copy of an Object =======");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const student2 = {
+        firstName: "Abdul",
+        lastName: "Latif",
+        testScores: [78, 88, 95, 99, 96],
+      };
+      function copyStudent(s) {
+        const studentCopy = { ...s };
+        studentCopy.testScores = [...studentCopy.testScores];
+        return studentCopy;
+      }
+      const studentCopy = copyStudent(student2);
+      studentCopy.testScores[0] = 90;
+
+      console.log(student2.testScores[0]);
+      console.log(studentCopy.testScores[0]);
+    </script>
+  </body>
+</html>

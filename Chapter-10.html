@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log('=====> Catching and Neutralizing an Error <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    try {
+      const uri = decodeURI('http%test');
+      console.log('Success!');
+    }
+    catch (error) {
+      console.log(error);
+    }
+    finally {
+      console.log('The operation (and any error handling) is complete');
+    }
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Catching Different Types of Errors <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    try {
+      throw new TypeError("Something went wrong!");
+    }
+    catch (error) {
+      if (error instanceof RangeError) {
+        console.error('RangeError occurred:', error.message);
+      }
+      else if (error instanceof TypeError) {
+        console.error('TypeError occurred:', error.message);
+      }
+      else {
+        console.error('An unexpected error occurred:', error);
+        throw error;
+      }
+    }
+    console.log('');
+  </script>
+
+
+  <script>
+        console.log('=====> Throwing a Standard Error <=====')
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+   function strictDivision(number, divisor) {
+    if (divisor == 0) {
+      throw new Error('Dividing by zero is not allowed');
+    }
+    else {
+      return number/divisor;
+    }
+  }
+  try {
+    const result = strictDivision(42, 0);
+  }
+  catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
+    console.log('');
+  </script>
+
+<script>
+  console.log('=====> Throwing a Custom Error <=====')
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  class ProductNotFound extends Error {
+    constructor(missingProductID) {
+      super(`Product ${missingProductID} does not exist in the catalog`);
+      this.name = "ProductNotFound";
+      this.productID = missingProductID;
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, ProductNotFound);
+      }
+    }
+  }
+  try {
+    throw new ProductNotFound(420);
+  } catch (error) {
+    console.log(`An error occured with the message: ${error.message}`);
+    if (error instanceof ProductNotFound) {
+      console.log(`Missing: ${error.productID}`);
+    }
+  }
+  console.log('');
+</script>
+
+<script>
+  console.log('=====> Catching Asynchronous Errors <=====')
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  async function doWork() {
+    try {
+      const response = await fetch('http://noserver');
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  doWork().then(() => {
+    console.log('All done');
+  });
+  console.log('');
+</script>
+
+</body>
+</html>

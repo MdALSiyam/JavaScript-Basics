@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    console.log('=====> Generating Random Numbers <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const min = 10;
+    const max = 100;
+    const num1 = Math.floor(Math.random() * (max - min + 1) ) + min;
+    console.log(num1);
+    const num2 = Math.floor(Math.random()*6) + 1;
+    console.log(num2);
+    const num3 = Math.floor(0.374324823*6) + 1;
+    console.log(num3);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Generating Cryptographically Secure Random Numbers <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const myBuffer = new Uint32Array(1);
+    window.crypto.getRandomValues(myBuffer);
+    const myFraction = myBuffer[0]
+    const myNumber = Math.floor(myFraction*6) + 1;
+    console.log(myNumber);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Rounding to a Specific Decimal Place <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const fractionalNumber = 18.48938;
+    const roundedNumber = Math.round(fractionalNumber);
+    console.log(roundedNumber);
+    const numberToRound = fractionalNumber * (10**2);
+    let roundedNumbers = Math.round(numberToRound);
+    console.log(roundedNumbers);
+    const numberOfDecimalPlaces = 2;
+    const roundNumber = roundedNumber / (10**numberOfDecimalPlaces);
+    console.log(roundNumber);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Preserving Accuracy in Decimal Values <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const mySum = 0.2 + 0.4;
+    console.log(mySum);
+    const currentBalance = 382.23;
+    const transactionAmount = 14.234;
+    const updatedBalance = currentBalance - transactionAmount;
+    console.log(updatedBalance);
+    const costInCents = 4899;
+    const costWithTax = Math.round(costInCents*1.11);
+    console.log(costWithTax);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Converting a String to a Number <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const stringData = '55';
+    const numberData = Number(stringData);
+    console.log(numberData);
+    console.log(Number('64'));
+    console.log(parseFloat('64'));
+    console.log(Number('24 cows'));
+    console.log(parseFloat('24 cows')); 
+    console.log(Number('cows 24'));
+    console.log(parseFloat('cows 24'));
+    console.log(Number('2010/01/01'));
+    console.log(parseFloat('2010/01/01'));
+    console.log(Number(' '));
+    console.log(parseFloat(' '));
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Converting a Decimal to a Hexadecimal Value <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const num = 150;
+    console.log(num.toString(16));
+    const octalNumber = 0o255;
+    console.log(octalNumber);
+    const hexaNumber = 0xad;
+    console.log(hexaNumber);
+    const decNum = 50;
+    const octNum = decNum.toString(8);
+    console.log(octNum);
+    const hexNum = decNum.toString(16); 
+    console.log(hexNum);
+    const binNum = decNum.toString(2);
+    console.log(binNum);
+    console.log('');
+  </script>
+</body>
+</html>

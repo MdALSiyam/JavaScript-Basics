@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("=====> Index DB <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~");
+      const dbName = "myData";
+      const storeName = "myStoreDB";
+
+      function openDB() {
+        const request = indexedDB.open(dbName, 1);
+
+        request.onerror = function (event) {
+          console.error("Database error:", event.target.error);
+        };
+
+        request.onsuccess = function (event) {
+          const db = event.target.result;
+          addData(db);
+          getData(db);
+        };
+
+        request.onupgradeneeded = function (event) {
+          const db = event.target.result;
+          const objectStore = db.createObjectStore(storeName, {
+            keyPath: "id",
+          });
+        };
+      }
+
+      function addData(db) {
+        const transaction = db.transaction(storeName, "readwrite");
+        const objectStore = transaction.objectStore(storeName);
+
+        objectStore.add({
+          id: 1,
+          name: "Abdul Latif",
+          age: 25,
+        });
+        objectStore.add({ id: 2, name: "Afrin Jahan", age: 26 });
+      }
+
+      function getData(db) {
+        const transaction = db.transaction(storeName, "readonly");
+        const objectStore = transaction.objectStore(storeName);
+
+        const getAllRequest = objectStore.getAll();
+
+        getAllRequest.onsuccess = function (event) {
+          const data = event.target.result;
+          console.log(data);
+          console.log("Success Opening DB");
+        };
+      }
+
+      openDB();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("=====> Creating an Enum with Symbol <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      const TrafficLight = {
+        Green: Symbol("green"),
+        Red: Symbol("red"),
+        Yellow: Symbol("yellow"),
+      };
+
+      function SwitchLight(newLight) {
+        if (newLight === TrafficLight.Green) {
+          console.log("Turning Light Green");
+        } else if (newLight === TrafficLight.Red) {
+          console.log("Get ready to stop");
+        } else {
+          console.log("Turning Light Red");
+        }
+      }
+      let light = TrafficLight.Green;
+      light = SwitchLight(light);
+      console.log(light);
+      light = SwitchLight(TrafficLight.Yellow);
+      console.log(light);
+      light = SwitchLight(TrafficLight.Red);
+      console.log(light);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Creating a Reusable Class <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      class person {
+        constructor(firstname, lastName) {
+          this.firstname = firstname;
+          this.lastName = lastName;
+        }
+      }
+      const person1 = new person("Abdul", "Latif");
+      console.log(person1);
+      const person2 = new person("Afrin", "Jahan");
+      console.log(person2);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Adding Properties to a Class <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      class persons {
+        constructor(firstname, lastName, dateBirth) {
+          this.firstname = firstname;
+          this.lastName = lastName;
+          this.dateBirth = dateBirth;
+        }
+        get age() {
+          if (this.dateBirth instanceof Date) {
+            const today = new Date();
+            let age = today.getFullYear() - this.dateBirth.getFullYear();
+            const monthDiff = today.getMonth() - this.dateBirth.getMonth();
+            if (
+              monthDiff < 0 ||
+              (monthDiff === 0 && today.getDate() < this.dateBirth.getDate())
+            ) {
+              age -= 1;
+            }
+            return age;
+          }
+        }
+      }
+      const person3 = new persons("Abdul", "Latif");
+      console.log(person3);
+      const person4 = new persons("Fahmida", "Diba", new Date(2001, 10));
+      console.log(person4);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Using the Constructor Pattern to Make a Custom Class <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      function Employee(firstname, lastName) {
+        this.firstname = firstname;
+        this.lastName = lastName;
+        this.fullName = function () {
+          return `Full Name is ${this.firstname} ${this.lastName}`;
+        };
+      }
+      const emp1 = new Employee("Samia", "Farha");
+      console.log(emp1.fullName());
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Adding Static Methods to a Class <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      class Book {
+        constructor(title, author) {
+          this.title = title;
+          this.author = author;
+        }
+        static isEqual(book, anotherBook) {
+          if (book instanceof Book && anotherBook instanceof Book) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+      const book1 = new Book("Never Give Up", "Abdul Latif");
+      console.log(book1);
+      const book2 = new Book("Starry Night", "Afrin Jahan");
+      console.log(book2);
+      const sameBook = Book.isEqual(book1, book2);
+      console.log(sameBook);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Using a Static Method to Create Objects <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      class Books {
+        constructor(title, author) {
+          this.title = title;
+          this.author = author;
+        }
+        static isEqual(book, anotherBook) {
+          if (book instanceof Books && anotherBook instanceof Books) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+      const book3 = new Book("Never Give Up", "Abdul Latif");
+      console.log(book1);
+      const book4 = new Book("Starry Night", "Afrin Jahan");
+      console.log(book2);
+      const sameBook2 = Book.isEqual(book3, book4);
+      console.log(sameBook2);
+      console.log("");
+    </script>
+
+    <script>
+      console.log("=====> Inheriting Functionality from Another Class <=====");
+      console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      class Shape {
+        getArea() {
+          return null;
+        }
+      }
+      class Triangle extends Shape {
+        constructor(base, height) {
+          super();
+          this.base = base;
+          this.height = height;
+        }
+        getArea() {
+          return (this.base * this.height) / 2;
+        }
+      }
+      const shapes = new Triangle(15, 8);
+      if (shapes instanceof Shape) {
+        console.log("True");
+      }
+      console.log(shapes.getArea());
+    </script>
+
+  </body>
+</html>

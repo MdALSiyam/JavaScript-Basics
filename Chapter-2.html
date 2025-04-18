@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    console.log("=====> Checking for an Existing, Nonempty String <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const unknownVariable = 'test'
+
+    if(typeof unknownVariable === 'string'){
+      console.log('Yes1');
+      // alert('Confirm');
+    }
+
+    if (typeof unknownVariable === 'string' && unknownVariable.length > 0) {
+      console.log('Yes2');
+    }
+
+    if (typeof unknownVariable === 'string' && unknownVariable.trim().length > 0) {
+      console.log('Yes3');
+    }
+
+    const unknownVariables = new String('test')
+    
+    if (unknownVariables.length > 0)
+    {
+      console.log('Yes4');
+    }
+    
+    if (typeof unknownVariables === 'string' && unknownVariables.length > 0) {
+      console.log('Yes4');
+    }
+
+    if (typeof unknownVariables === 'string' || String.prototype.isPrototypeOf(unknownVariables)) {
+      console.log('Yes5');
+    }   
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Converting a Numeric Value to a Formatted String <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    const number = 100;
+    const someString = number.toString();
+    console.log(someString);
+
+    const someNumber = 1242.0055;
+    
+    const fixedString = someNumber.toFixed(2);
+    console.log(fixedString);
+    
+    const precisionString = someNumber.toPrecision(5);
+    console.log(precisionString);
+    
+    const scientificString = someNumber.toExponential(2);
+    console.log(scientificString);
+
+    const formatter = new Intl.NumberFormat('en-US',{style: 'currency', currency: 'USD'});
+    console.log(formatter);
+    const moneyString = formatter.format(someNumber);
+    console.log(moneyString);
+
+    const moneyStrings = someNumber.toLocaleString( 'en-US', { style: 'currency', currency: 'USD' });
+    console.log(moneyStrings);
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Inserting Special Characters & Emojis <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    const movie = `My \\ favorite\n movie\t is \b : \'Never Give Up\" `;
+    console.log(movie);
+
+    const copyright = 'This page \u00A9 Shelley Powers.';
+    console.log(copyright);
+
+    const hamburger = '🍔';
+    const hamburgerStory = 'I like hamburgers ' + hamburger;
+    console.log(hamburgerStory);
+
+    const laptop = 'I will display ' + String.fromCodePoint(0x1F4BB);
+    console.log(laptop);
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Using Template Literals for Clearer String Concatenation <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const firstName = 'Abdul';
+    const lastName = 'Latif';
+    const team = 'Bercelona';
+    const hireDate = new Date('10/01/2024') ;
+
+    const employeeDetail = 'Our team includes ' + firstName + ' ' + lastName + ' who works on the ' + team + " team. They\'ve been a team member since " + hireDate + '!';
+    console.log(employeeDetail);
+
+    const employeeDetail1 = `Our team includes ${firstName} ${lastName} who works on the ${team} team. They've been a team member since ${hireDate}!`;
+    console.log(employeeDetail);
+
+    const calculation = `The sum of 5 & 3 is ${5+3}`;
+    console.log(calculation);
+
+    function getDaysSince(date) {
+    const today = new Date();
+    const oneDay = 24 * 60 * 60 * 1000;
+    return Math.round(Math.abs((today - date) / oneDay));
+    }
+  
+    employeeDetail3 = `Our team includes ${firstName} ${lastName}. They've been a team member since ${hireDate}! That's ${getDaysSince(hireDate)} days.`;
+    console.log(employeeDetail3);
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Performing a Case-Insensitive String Comparison <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const a = "siyam";
+    const b = "SIYAM";
+    if (a.toLowerCase() === b.toLowerCase()) {
+      console.log("Ok");
+    }
+    const c = "latif";
+    const d = "LATIF";
+    if (c.localeCompare(d, undefined, { sensitivity: 'accent' }) === 0) {
+      console.log("Ok");
+    }
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Checking If a String Contains a Specific Substring <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const searchString = 'infinitely';
+    const fullText = 'I know not where I was born, save that the castle was' +' infinitely old and infinitely horrible.';
+    if (fullText.includes(searchString, 70)) {
+      console.log("True");
+    }
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Replacing All Occurrences of a String <=====");
+    const storyText = 'I know not where I was born, save that the castle was' + ' infinitely old and infinitely horrible.';
+    const changedStory = storyText.replaceAll('infinitely', 'somewhat');
+    console.log(changedStory);
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Using a Regular Expression to Replace Patterns in a String <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const originalString = 'Now is the time, this is the tame';
+    console.log(originalString);
+    const regex = new RegExp('t\\w{2}e', 'g');
+    const newString = originalString.replaceAll(regex, 'place');
+    console.log(newString);
+    console.log("");
+  </script>
+
+  <script>
+    console.log("=====> Extracting a List from a String <=====")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const sentence = 'This is a sentence with a list of items:' + 'cherries, oranges, apples, bananas. That was the list of items.';
+    console.log(sentence);
+    const start = sentence.indexOf(':');
+    const end = sentence.indexOf('.', start + 1);
+    const list = sentence.slice(start + 1, end);
+    console.log(list);
+    let fruits = list.split(',');
+    console.log(fruits);
+    console.log("");
+  </script>
+</body>
+</html>

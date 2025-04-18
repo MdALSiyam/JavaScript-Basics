@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log('=====> Checking If an Object Is an Array <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const browsers = ['Firefox', 'Edge', 'Chrome', 'IE', 'Safari'];
+    if (Array.isArray(browsers)) {
+      console.log('It is an Array');
+    }
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Iterating Over All the Elements in an Array <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const plants = ['Rose', 'Tulip', 'Lily', 'Jasmine', 'Daisy'];
+    for (const plant of plants) {
+      console.log(plants);
+    }
+    for (let i = 0; i < plants.length; ++i) {
+      console.log(plants[i]);
+    }
+    const animals = ['Tiger', 'Lion', 'Zebra', 'Cat', 'Dog'];
+    animals.forEach(function(animal, index, array) {
+      console.log(animals);
+    });
+    animals.forEach(animal => console.log(animal));
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Checking If Two Arrays Are Equal <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const arr1 = [1, 2, 3];
+    const arr2 = [1, 2, 3];
+    const arr3 = [1, 2, 4];
+    function areArraysEqual(arr1, arr2) {
+      if (arr1.length !== arr2.length) {
+    return false;
+    }
+    for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false; 
+      }
+    }
+    return true; 
+    }
+    console.log(areArraysEqual(arr1, arr2));
+    console.log(areArraysEqual(arr1, arr3));
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Breaking Down an Array into Separate Variables <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const stateValues = [459, 144, 96, 34, 0, 14];
+    const [arizona, , , nebraska, texas] = stateValues;
+    console.log(nebraska);
+    const stateValue = [459, 144, 96, 34, 0, 14];
+    const [arizon, missouri, idaho, ...others] = stateValues;
+    console.log(others);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Passing an Array to a Function That Expects a List of Values <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const numbers = [2, 42, 5, 364, 1, 13];
+    const maximum = Math.max(24, ...numbers, 96, 7);
+    console.log(maximum);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Cloning an Array <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const number = [2, 42, 5, 304, 1, 13];
+    const numbersCopy = [...number];
+    console.log(numbersCopy);
+    const numb = [42, 50, 34, 10, 13];
+    const numberCopy = numb.slice();
+    console.log(numberCopy);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Merging Two Arrays <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const evens = [2, 4, 6, 8];
+    const odds = [1, 3, 5, 7, 9];
+    const evensAndOdds = [...odds, 11, ...evens, 10, 12];
+    console.log(evensAndOdds);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Copying a Portion of an Array by Position <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const animal = ['elephant', 'tiger', 'lion', 'zebra', 'cat', 'dog', 'rabbit', 'goose'];
+    console.log(animal);
+    const firstHalf = animal.slice(0, 3);
+    console.log(firstHalf);
+    const secondHalf = animal.slice(4, 7);
+    console.log(secondHalf);
+    const extraAnimals = [...firstHalf, 'emu', 'platypus', ...secondHalf];
+    console.log(extraAnimals);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Extracting Array Items That Meet Specific Criteria <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    function startsWithE(animal) {
+      return animal[0].toLowerCase() === 'e';
+    }
+    const animalS = ['elephant', 'tiger', 'emu', 'zebra', 'cat', 'dog','eel', 'rabbit', 'goose', 'earwig'];
+    console.log(animalS);
+    const animalsE = animalS.filter(startsWithE);
+    console.log(animalsE);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Emptying an Array <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const num = [2, 42, 5, 304, 1, 13];
+    num.length = 3;
+    console.log(num);
+    num.length = 5;
+    console.log(num);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Removing Duplicate Values <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const numbersWithDuplicates = [2, 42, 5, 42, 304, 1, 13, 2, 13];
+    console.log(numbersWithDuplicates);
+    const uniqueNumbers = [...new Set(numbersWithDuplicates)];
+    console.log(uniqueNumbers);
+    console.log('');
+  </script>
+
+  <script>
+    console.log('=====> Flattening a Two-Dimensional Array <=====')
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    const fruitArray = [];
+    fruitArray[0] = ['strawberry', 'blueberry', 'raspberry'];
+    fruitArray[1] = ['lime', 'lemon', 'orange', 'grapefruit'];
+    fruitArray[2] = ['tangerine', 'apricot', 'peach', 'plum'];
+    const fruitList = fruitArray.flat();
+    console.log(fruitList);
+    console.log('');
+  </script>
+</body>
+</html>
